@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Alert, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firebase, storage } from '../../../config'
 import { checkIpAddress, fetchUnit, getStatusIcon } from '../../../functions'
@@ -39,6 +39,7 @@ const Profile = ({ navigation }) => {
     const [statusIcon, setStatusIcon] = useState('')
     const [statusId, setStatusId] = useState('')
     const units = []
+
     useEffect(() => {
         getCurrentEmployee()
     }, [subunitId])
@@ -152,11 +153,17 @@ const Profile = ({ navigation }) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0,
+            width: 130,
+            height: 130,
+            compress: 0.7
+            // resize: { width: 50, height: 50 }
         })
 
         if (!result.canceled) {
             const uploadURL = await uploadImageAsync(result.assets[0].uri);
-            setNewAvatar(uploadURL)
+            setAvatar(uploadURL)
         }
     }
 
@@ -165,12 +172,13 @@ const Profile = ({ navigation }) => {
             .collection('employees')
             .doc(empId)
             .update({
-                full_name: newName === '' ? name : newName,
-                avatar: newAvatar === '' ? avatar : newAvatar,
+                full_name: name,
+                avatar: avatar,
             })
             .then(() => {
                 getCurrentEmployee()
                 setIsModalProfileVisible(!isModalProfileVisible)
+                getCurrentEmployee()
             });
     }
 
@@ -220,7 +228,23 @@ const Profile = ({ navigation }) => {
                     }}
                 >
                     <TouchableOpacity onPress={() => setIsModalProfileVisible(!isModalProfileVisible)}>
-                        <Avatar
+                        <Image source={{ uri: avatar }}
+                            style={{
+                                height: 130,
+                                width: 130,
+                                borderRadius: 100,
+                                backgroundColor: COLORS.white,
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 2,
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 4,
+                                elevation: 5,
+                                zIndex: 3,
+                            }} />
+                        {/* <Avatar
                             className=""
                             size={130}
                             rounded
@@ -253,7 +277,7 @@ const Profile = ({ navigation }) => {
                             }} >
                                 <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
                             </View>
-                        </Avatar>
+                        </Avatar> */}
                     </TouchableOpacity>
                 </View>
             </>
@@ -490,7 +514,7 @@ const Profile = ({ navigation }) => {
                                     onPress={pickImage}
                                     className=""
                                     size={200}
-                                    source={{ uri: newAvatar == '' ? avatar : newAvatar }}
+                                    source={{ uri: avatar }}
                                     containerStyle={{
                                         backgroundColor: 'white'
                                     }}
@@ -516,7 +540,7 @@ const Profile = ({ navigation }) => {
                                     placeholder={`${name}`}
                                     placeholderTextColor='#726F6F'
                                     autoCorrect={false}
-                                    onChangeText={(text) => setNewName(text)}
+                                    onChangeText={(text) => setName(text)}
                                 />
                                 <View className={`${tailwind.viewWrapper}`}>
                                     <TouchableOpacity className={`${tailwind.buttonBlue}`} onPress={() => updateProfile()}>
@@ -525,7 +549,7 @@ const Profile = ({ navigation }) => {
                                 </View>
                                 <View className={`${tailwind.viewWrapper} `}>
                                     <TouchableOpacity className={`${tailwind.buttonWhite}`}
-                                        onPress={() => { setNewAvatar(''), setIsModalProfileVisible(!isModalProfileVisible) }}>
+                                        onPress={() => { setIsModalProfileVisible(!isModalProfileVisible) }}>
                                         <Text className={`${tailwind.buttonBlueText}`}>Cancel</Text>
                                     </TouchableOpacity>
                                 </View>
