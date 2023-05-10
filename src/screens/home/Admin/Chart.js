@@ -310,7 +310,7 @@ const Chart = ({ navigation }) => {
                                         inputAndroid: {
                                             paddingHorizontal: 15,
                                             paddingVertical: 15,
-                                            backgroundColor: COLORS.white,
+                                            backgroundColor: COLORS.brightGrey,
                                             borderRadius: 15,
                                             borderColor: COLORS.white,
                                             color: 'black',
