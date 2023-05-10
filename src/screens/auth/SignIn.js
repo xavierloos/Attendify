@@ -60,9 +60,9 @@ const SignIn = ({ navigation }) => {
                         <TouchableOpacity
                             className={`${tailwind.buttonBlue}`}
 
-                            // onPress={() => { signInUser('superadmin@test.com', 'superadmin') }}
-                            onPress={() => { signInUser(email, password) }}
-                            disabled={(!email.trim() || !password.trim())}
+                            onPress={() => { signInUser('superadmin@test.com', 'superadmin') }}
+                        // onPress={() => { signInUser(email, password) }}
+                        // disabled={(!email.trim() || !password.trim())}
                         >
                             <Text className={`${tailwind.buttonWhiteText}`}>Sign In</Text>
                         </TouchableOpacity>
