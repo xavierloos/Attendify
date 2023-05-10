@@ -478,11 +478,12 @@ const Event = ({ props }) => {
                     {(prevEvents.length == 0 && permission == 'Associate') ?
                         <View style={{
                             display: "flex",
+                            justifyContent: "center",
                             alignItems: "center",
                             height: '100%',
-                            width: '100%',
+                            marginTop: 30
                         }}>
-                            <Image source={require('../../../../assets/relax.png')} style={{ height: 550, width: '100%' }} />
+                            <Image source={require('../../../../assets/relax.png')} style={{ height: 300, width: '100%' }} />
                             <View className={`${tailwind.viewWrapper} px-4`}>
                                 <Text className={`${tailwind.titleText} text-[${COLORS.grey}] text-center`}>Relax!</Text>
                                 <View className={`flex-row justify-center items-center`}>

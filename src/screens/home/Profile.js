@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity, Alert, Image, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firebase, storage } from '../../../config'
-import { checkIpAddress, fetchUnit, getStatusIcon, getStatusName } from '../../../functions'
+import { checkIpAddress, fetchUnit, getStatusIcon } from '../../../functions'
 import tailwind from '../../constants/tailwind'
 import { ListItem, Avatar, BottomSheet, Button } from '@rneui/base'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -34,7 +34,6 @@ const Profile = ({ navigation }) => {
     const [isModalProfileVisible, setIsModalProfileVisible,] = useState(false);
     const [subunitSelected, setSubunitSelected] = useState('');
     const [emailSent, setEmailSent] = useState(false);
-    const [loadingAvatar, setLoadingAvatar] = useState(true);
     //const [theme, setTheme] = useState(lightTheme);
     const [darkMode, setDarkMode] = useState(false);
     const [statusIcon, setStatusIcon] = useState('')
@@ -84,7 +83,6 @@ const Profile = ({ navigation }) => {
                     setName(documentSnapshot.data()['full_name'])
                     setPermission(documentSnapshot.data()['permission'])
                     setAvatar(documentSnapshot.data()['avatar'])
-                    setLoadingAvatar(false)
                     setStatusId(documentSnapshot.data()['status_id'])
                     getStatusEmployee(documentSnapshot.data()['status_id'])
                 });
@@ -167,8 +165,8 @@ const Profile = ({ navigation }) => {
             .collection('employees')
             .doc(empId)
             .update({
-                full_name: newName != name ? newName : name,
-                avatar: newAvatar != avatar ? newAvatar : avatar,
+                full_name: newName === '' ? name : newName,
+                avatar: newAvatar === '' ? avatar : newAvatar,
             })
             .then(() => {
                 getCurrentEmployee()
@@ -222,77 +220,40 @@ const Profile = ({ navigation }) => {
                     }}
                 >
                     <TouchableOpacity onPress={() => setIsModalProfileVisible(!isModalProfileVisible)}>
-                        {loadingAvatar ? <>
-                            <Avatar
-                                className=""
-                                size={130}
-                                rounded
-                                source={{ uri: avatar }}
-                                containerStyle={{
-                                    backgroundColor: COLORS.white,
-                                    shadowColor: '#000',
-                                    shadowOffset: {
-                                        width: 0,
-                                        height: 2,
-                                    },
-                                    shadowOpacity: 0.25,
-                                    shadowRadius: 4,
-                                    elevation: 5,
-                                    zIndex: 3,
-                                }}
-                            >
-                                <View style={{
-                                    position: 'absolute',
-                                    top: 90,
-                                    left: 90,
-                                    backgroundColor: COLORS.primary,
-                                    color: COLORS.white,
-                                    borderRadius: 100,
-                                    shadowColor: '#000',
-                                    shadowOffset: { width: -2, height: 0 },
-                                    shadowOpacity: 0.5,
-                                    shadowRadius: 2,
-                                    elevation: 10,
-                                }} >
-                                    <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
-                                </View>
-                            </Avatar>
-                        </> : <>
-                            <Avatar
-                                className=""
-                                size={130}
-                                rounded
-                                source={{ uri: avatar }}
-                                containerStyle={{
-                                    backgroundColor: COLORS.white,
-                                    shadowColor: '#000',
-                                    shadowOffset: {
-                                        width: 0,
-                                        height: 2,
-                                    },
-                                    shadowOpacity: 0.25,
-                                    shadowRadius: 4,
-                                    elevation: 5,
-                                    zIndex: 3,
-                                }}
-                            >
-                                <View style={{
-                                    position: 'absolute',
-                                    top: 90,
-                                    left: 90,
-                                    backgroundColor: COLORS.primary,
-                                    color: COLORS.white,
-                                    borderRadius: 100,
-                                    shadowColor: '#000',
-                                    shadowOffset: { width: -2, height: 0 },
-                                    shadowOpacity: 0.5,
-                                    shadowRadius: 2,
-                                    elevation: 10,
-                                }} >
-                                    <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
-                                </View>
-                            </Avatar>
-                        </>}
+                        <Avatar
+                            className=""
+                            size={130}
+                            rounded
+                            source={{ uri: avatar }}
+                            containerStyle={{
+                                backgroundColor: COLORS.white,
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 2,
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 4,
+                                elevation: 5,
+                                zIndex: 3,
+                            }}
+                        >
+                            <View style={{
+                                position: 'absolute',
+                                top: 90,
+                                left: 90,
+                                backgroundColor: COLORS.primary,
+                                color: COLORS.white,
+                                borderRadius: 100,
+                                shadowColor: '#000',
+                                shadowOffset: { width: -2, height: 0 },
+                                shadowOpacity: 0.5,
+                                shadowRadius: 2,
+                                elevation: 10,
+                            }} >
+                                <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
+                            </View>
+                        </Avatar>
                     </TouchableOpacity>
                 </View>
             </>
@@ -534,7 +495,6 @@ const Profile = ({ navigation }) => {
                                         backgroundColor: 'white'
                                     }}
                                 >
-                                    {/* <Avatar.Accessory  size={30} className=" mx-auto  mr-3 mb-3 justify-center items-center bg-[#62ABEF]" /> */}
                                     <View style={{
                                         position: 'absolute',
                                         top: 150,
@@ -553,7 +513,7 @@ const Profile = ({ navigation }) => {
                                 </Avatar>
                                 <TextInput
                                     className={`${tailwind.inputs} w-full my-3 bg-[#DDDDDD]`}
-                                    placeholder={`Edit name: ${name}`}
+                                    placeholder={`${name}`}
                                     placeholderTextColor='#726F6F'
                                     autoCorrect={false}
                                     onChangeText={(text) => setNewName(text)}
