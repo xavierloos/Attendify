@@ -1,13 +1,14 @@
 {
   "expo": {
     "name": "Attendify",
-    "slug": "Attendify App",
+    "slug": "attendify",
+    "description":"Application to check attendances on live events",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/attendify-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/attendify-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,19 +22,27 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-     "plugins": [
+    "plugins": [
       [
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
-    ]
-
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a4c15d67-2421-44d0-aa01-ff9f46824e67"
+      }
+    },
+    "owner": "xavierloos"
   }
 }
