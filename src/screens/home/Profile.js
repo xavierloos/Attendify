@@ -157,8 +157,7 @@ const Profile = ({ navigation }) => {
             quality: 0,
             width: 130,
             height: 130,
-            compress: 0.7
-            // resize: { width: 50, height: 50 }
+            compress: 0.7,
         })
 
         if (!result.canceled) {
@@ -244,40 +243,22 @@ const Profile = ({ navigation }) => {
                                 elevation: 5,
                                 zIndex: 3,
                             }} />
-                        {/* <Avatar
-                            className=""
-                            size={130}
-                            rounded
-                            source={{ uri: avatar }}
-                            containerStyle={{
-                                backgroundColor: COLORS.white,
-                                shadowColor: '#000',
-                                shadowOffset: {
-                                    width: 0,
-                                    height: 2,
-                                },
-                                shadowOpacity: 0.25,
-                                shadowRadius: 4,
-                                elevation: 5,
-                                zIndex: 3,
-                            }}
-                        >
-                            <View style={{
-                                position: 'absolute',
-                                top: 90,
-                                left: 90,
-                                backgroundColor: COLORS.primary,
-                                color: COLORS.white,
-                                borderRadius: 100,
-                                shadowColor: '#000',
-                                shadowOffset: { width: -2, height: 0 },
-                                shadowOpacity: 0.5,
-                                shadowRadius: 2,
-                                elevation: 10,
-                            }} >
-                                <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
-                            </View>
-                        </Avatar> */}
+                        <View style={{
+                            position: 'absolute',
+                            top: 90,
+                            left: 90,
+                            backgroundColor: COLORS.primary,
+                            color: COLORS.white,
+                            borderRadius: 100,
+                            shadowColor: '#000',
+                            shadowOffset: { width: -2, height: 0 },
+                            shadowOpacity: 0.5,
+                            shadowRadius: 2,
+                            elevation: 10,
+                            zIndex: 10
+                        }} >
+                            <Avatar size={40} rounded icon={{ name: 'camera-alt', type: "material" }} color={COLORS.white} />
+                        </View>
                     </TouchableOpacity>
                 </View>
             </>
