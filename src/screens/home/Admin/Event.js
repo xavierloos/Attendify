@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { View, Text, Alert, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, ActivityIndicator, Platform, FlatList } from 'react-native'
+import { View, Text, Alert, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, ActivityIndicator, Platform, FlatList, Image } from 'react-native'
 import { firebase } from '../../../../config'
 import { format } from 'date-fns'
 import { getLocationName, getLocations, hanldeCreateEvent, alertCancelEvent, getPermission, getEmployeesByStatus, getEventIpAddress, getStatusIcon, finishEvent, getEmployeeName, getCurrentEmployeeStatus } from '../../../../functions'
@@ -474,6 +474,23 @@ const Event = ({ props }) => {
                             </View>
                         ) : null}
                     </View>
+
+                    {(prevEvents.length == 0 && permission == 'Associate') ?
+                        <View style={{
+                            display: "flex",
+                            alignItems: "center",
+                            height: '100%',
+                            width: '100%',
+                        }}>
+                            <Image source={require('../../../../assets/relax.png')} style={{ height: 550, width: '100%' }} />
+                            <View className={`${tailwind.viewWrapper} px-4`}>
+                                <Text className={`${tailwind.titleText} text-[${COLORS.grey}] text-center`}>Relax!</Text>
+                                <View className={`flex-row justify-center items-center`}>
+                                    <Text className={`${tailwind.slogan} text-[${COLORS.grey}] text-center`} >Your events will appear here</Text>
+                                </View>
+                            </View>
+                        </View>
+                        : null}
                     {prevEvents.length > 0 ? (
                         <>
                             <Text className={`${tailwind.titleText} text-[${COLORS.grey}] mb-2 ml-5`}>Previous events</Text>
