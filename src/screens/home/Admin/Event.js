@@ -259,7 +259,7 @@ const Event = ({ props }) => {
                     <View className={`items-center px-4 w-full`}>
                         {currentEvent ? (
                             <>
-                                <View className={`${tailwind.viewWrapper}`}>
+                                <View className={`${tailwind.viewWrapper} `}>
                                     <Text className={`${tailwind.titleText} text-[${COLORS.grey}] mb-2 mt-2`}>Latest event</Text>
                                     <View style={{ backgroundColor: bgStatus }} className={`${tailwind.viewWrapper} rounded-2xl p-6`}>
                                         {permission == 'Admin' || permission == 'Super Admin' ? (
@@ -393,7 +393,7 @@ const Event = ({ props }) => {
                             </>
                         ) : null}
                         {(permission == 'Admin' || permission == 'Super Admin') && currentEvent.length == 0 ? (
-                            <View className={`${tailwind.viewWrapper}`}>
+                            <View className={`${tailwind.viewWrapper} `}>
                                 <Text className={`${tailwind.titleText} text-[${COLORS.grey}] mb-2  mt-2 pb-2`}>Create a new session</Text>
                                 <View className={`${tailwind.viewWrapper} bg-[${COLORS.primary}] rounded-2xl p-6`}>
                                     <RNPickerSelect
@@ -425,7 +425,7 @@ const Event = ({ props }) => {
                                         items={locations}
                                     />
                                     <TextInput
-                                        className={`${tailwind.inputs} w-12/12 mb-3`}
+                                        className={`${tailwind.inputs} w-12/12 mb-3 ${Platform.OS === 'android' ? 'rounded-none' : null}`}
                                         value={title}
                                         placeholder={'Event title'}
                                         onChangeText={(text) => setTitle(text)}
@@ -467,7 +467,7 @@ const Event = ({ props }) => {
                                             { label: '60 mins', value: 3600 },
                                         ]}
                                     />
-                                    <TouchableOpacity className={`${tailwind.buttonWhite}`}
+                                    <TouchableOpacity className={`${tailwind.buttonWhite} ${Platform.OS === 'android' ? 'rounded-none' : null}`}
                                         onPress={() => {
                                             hanldeCreateEvent(selectedLocation, title, sickEmps, leaveEmps, firebase.auth().currentUser?.email, props.ipAddress, timerSelected); getCurrentEvent(); setTimer(timerSelected)
                                         }}>
