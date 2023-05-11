@@ -81,7 +81,7 @@ const Employees = ({ navigation }) => {
                         <ListItem.Title className={`${tailwind.titleText} font-medium text-xl text-[${COLORS.grey}]`}>{data['full_name']}</ListItem.Title>
                         <ListItem.Subtitle className={`${tailwind.slogan} text-base text-[${COLORS.grey}]`}>{id}</ListItem.Subtitle>
                     </ListItem.Content>
-                    {/* <Icon name={icon} size={30} color={COLORS.primary} /> */}
+                    <Icon name={'chevron-forward-outline'} size={30} color={COLORS.brightGrey} />
                 </ListItem>
             </TouchableOpacity >
         )
@@ -99,6 +99,9 @@ const Employees = ({ navigation }) => {
                     shadowOpacity: 0.25,
                     shadowRadius: 4,
                     elevation: 5,
+                    zIndex: 3,
+                    alignItems: 'center'
+
                 }}>
                     <View className={`${tailwind.inputs} bg-[${COLORS.brightGrey}] w-11/12 flex-row justify-between`}>
                         <Icon name="ios-search" size={20} color="#000" className={`w-1/12`} />
@@ -114,7 +117,8 @@ const Employees = ({ navigation }) => {
                     </View>
                 </View>
                 <ScrollView>
-                    <FlatList marginBottom={400}
+                    <FlatList
+                        marginBottom={400}
                         data={filteredData}
                         keyExtractor={item => item['data']['employee_id']}
                         renderItem={(item) => <Item id={item.item['data']['employee_id']} data={item.item['data']} />}

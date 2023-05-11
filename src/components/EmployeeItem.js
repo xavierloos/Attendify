@@ -8,7 +8,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import RadioForm from 'react-native-simple-radio-button';
 import { arrayUnion } from 'firebase/firestore'
 import { firebase } from '../../config'
-
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const EmployeeItem = ({ props }) => {
   const [icon, setIcon] = useState('')
@@ -103,7 +103,7 @@ const EmployeeItem = ({ props }) => {
       <TouchableOpacity onPress={() => refRBSheet.current.open()}  >
         <ListItem.Swipeable bottomDivider>
           <Avatar rounded size={50} source={{ uri: `${props.avatar}` }} >
-            <View style={{
+            {/* <View style={{
               position: 'absolute',
               top: 30,
               left: 30,
@@ -117,13 +117,30 @@ const EmployeeItem = ({ props }) => {
               elevation: 10,
             }} >
               <Avatar size={25} rounded icon={{ name: icon, type: "material" }} color={'white'} />
-            </View>
+            </View> */}
           </Avatar>
           <ListItem.Content>
             <ListItem.Title className={`${tailwind.titleText} font-medium text-xl text-[#7E7E7E]`}>{props.name}</ListItem.Title>
             <ListItem.Subtitle className={`${tailwind.slogan} text-base text-[#7E7E7E]`}>{props.id}</ListItem.Subtitle>
+
           </ListItem.Content>
-          <ListItem.Chevron />
+          <View style={{
+            // position: 'absolute',
+            // top: 30,
+            // left: 30,
+            backgroundColor: icon == 'done' ? COLORS.blue900 : icon == 'close' ? COLORS.blueA700 : icon == 'favorite' ? COLORS.primary : COLORS.lightblue700,
+            color: 'white',
+            borderRadius: 100,
+            // shadowColor: '#000',
+            // shadowOffset: { width: -2, height: 0 },
+            // shadowOpacity: 0.5,
+            // shadowRadius: 2,
+            // elevation: 10,
+          }} >
+            <Avatar size={35} rounded icon={{ name: icon, type: "material" }} color={'white'} />
+          </View>
+          <Icon name="chevron-forward-outline" size={30} color={COLORS.brightGrey} className={``} />
+          {/* <ListItem.Chevron /> */}
         </ListItem.Swipeable>
       </TouchableOpacity>
       <RBSheet

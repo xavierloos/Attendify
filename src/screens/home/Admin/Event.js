@@ -172,9 +172,11 @@ const Event = ({ props }) => {
                         </View>
                     </View>
                 </View>
-                <View className={`text-center m-auto `}>
-                    <Icon name="chevron-forward-outline" size={30} color={COLORS.lightGrey} className={``} />
-                </View>
+                {permission == 'Admin' || permission == 'Super Admin' ? (
+                    <View className={`text-center m-auto `}>
+                        <Icon name="chevron-forward-outline" size={30} color={COLORS.brightGrey} className={``} />
+                    </View>
+                ) : null}
                 {/* {props.createdBy === firebase.auth().currentUser?.email ? (
                     <TouchableOpacity className={`text-center m-auto `} onPress={() => { alertCancelEvent(props.id); getCurrentEvent() }}>
                         <Icon name="trash-outline" size={30} color={'#FF0000'} className={``} />
