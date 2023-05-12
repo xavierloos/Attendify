@@ -5,11 +5,12 @@ import { firebase } from './config';
 import WelcomeStackNavigator from './src/navigations/AuthNavigator';
 //import MenuDrawerNavigator from './src/navigations/MenuDrawerNavigator'; 
 import 'react-native-gesture-handler';
-import { checkConnection } from './functions';
+import { checkConnection, getPermission } from './functions';
 import { Offline } from './src/screens/Offline';
 import MenuDrawerNavigator from './src/navigations/MenuDrawerNavigator';
 import { LogBox } from 'react-native';
 import BottomTabNavigator from './src/navigations/BottomNavigator';
+import BottomTabNavigatorUser from './src/navigations/BottomNavigatorUser';
 
 LogBox.ignoreAllLogs()
 
@@ -19,10 +20,9 @@ export default function App() {
   const [user, setUser] = useState();
   const [connection, setConnection] = useState(false)
 
-
-
   function onAuthStateChange(user) {
     setUser(user);
+    getPermission(firebase.auth().currentUser?.email).then(res => setPermission(res))
     if (initializing) setInitializing(false);
   }
 
@@ -30,6 +30,12 @@ export default function App() {
     const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChange);
     return subscriber;
   }, [])
+
+  const [permission, setPermission] = useState()
+
+  // useEffect(() => {
+  //   getPermission(firebase.auth().currentUser?.email).then(res => setPermission(res))
+  // }, [permission])
 
   useEffect(() => {
     checkConnection().then(res => {
@@ -42,7 +48,7 @@ export default function App() {
   return (
     connection ? (
       <NavigationContainer>
-        {(user) ? <BottomTabNavigator /> : <WelcomeStackNavigator />}
+        {(user && (permission == 'Admin' || permission == 'Super Admin')) ? <BottomTabNavigator /> : (user && (permission == 'Associate')) ? <BottomTabNavigatorUser /> : <WelcomeStackNavigator />}
       </NavigationContainer>
     ) : (<Offline onCheck={checkConnection} />)
   )

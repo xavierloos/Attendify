@@ -14,7 +14,7 @@ import DashboardHeader from "./headers/DashboardHeader";
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const BottomTabNavigatorUser = () => {
     const [permission, setPermission] = useState()
 
     useEffect(() => {
@@ -85,12 +85,10 @@ const BottomTabNavigator = () => {
     return (
         <Tab.Navigator screenOptions={({ route }) => (screenOptions(route))} >
             <Tab.Screen name={ROUTES.HOME_TAB} component={DashboardHeader} options={{ title: 'Dashboard' }} />
-
-            <Tab.Screen name={ROUTES.CHART} component={ReportHeader} options={{ title: 'Report' }} />
             <Tab.Screen name={ROUTES.PROFILE} component={ProfileHeader} options={{ title: `Profile` }} />
             <Tab.Screen name={ROUTES.EMPLOYEES_NAVIGATOR} component={EmployeesNavigator} options={{ title: 'Employees' }} />
         </Tab.Navigator>
     );
 };
 
-export default BottomTabNavigator;
+export default BottomTabNavigatorUser;
