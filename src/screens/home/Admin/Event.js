@@ -122,13 +122,13 @@ const Event = ({ props }) => {
     }
 
     const Item = ({ id, title, startDate, totalAttendance, createdBy }) => {
-        const [creator, setCreator] = useState('')
-        useEffect(() => {
-            getEmployeeName(createdBy).then(res => {
-                res = res.split(' ')
-                setCreator(res[0])
-            })
-        }, [creator])
+        // const [creator, setCreator] = useState('')
+        // useEffect(() => {
+        //     getEmployeeName(createdBy).then(res => {
+        //         res = res.split(' ')
+        //         setCreator(res[0])
+        //     })
+        // }, [creator])
 
         return (
             <>
@@ -145,6 +145,15 @@ const Event = ({ props }) => {
     };
 
     ItemContent = ({ props }) => {
+        // const [creator, setCreator] = useState('')
+
+        // useEffect(() => {
+        //     getEmployeeName(props.createdBy).then(res => {
+        //         res = res.split(' ')
+        //         setCreator(res[0])
+        //     })
+        // }, [creator])
+
         return (
             <View className={`d-flex flex-row mx-4 my-2 bg-[#fff] rounded-2xl drop-shadow-xl justify-between`} style={{
                 shadowColor: '#000',
@@ -157,18 +166,17 @@ const Event = ({ props }) => {
                 elevation: 5,
             }}>
                 <View className={`w-9/12 d-flex flex-row w-10/12`}>
-                    <View className={`bg-[${COLORS.primary}] p-1 d-flex justify-center w-2/12 rounded-2xl`}>
+                    <View className={`bg-[${COLORS.primary}] py-3 d-flex justify-center w-3/12 rounded-2xl`}>
                         <Text className={`font-medium text-3xl text-[#fff] text-center m-auto`}>{format(new Date(props.startDate), 'dd')}</Text>
                         <Text className={`font-medium text-xl text-[#fff] text-center m-auto`}>{format(new Date(props.startDate), 'MMM').toUpperCase()}</Text>
                     </View>
-                    <View className={`py-1 px-2 d-flex justify-center w-10/12`}>
+                    <View className={`py-1 px-2 d-flex justify-center w-9/12`}>
                         <View>
                             <Text numberOfLines={1} className={`${tailwind.titleText} font-medium text-xl text-[#7E7E7E] truncate `}> {props.title}</Text>
                         </View>
                         <View className={`d-flex flex-row`}>
                             <Text className={`${tailwind.slogan} text-base text-[#7E7E7E] mr-4`}> <Icon name={'time'} size={15} color={COLORS.primary} /> {format(new Date(props.startDate), 'HH:mm')}</Text>
                             <Text className={`${tailwind.slogan} text-base text-[#7E7E7E] mr-4`}> <Icon name={'people'} size={20} color={COLORS.primary} /> {props.totalAttendance}</Text>
-                            {/* <Text className={`${tailwind.slogan} text-base text-[#7E7E7E] mr-4`}> <Icon name={'person'} size={15} color={COLORS.grey} /> {createdBy === firebase.auth().currentUser?.email ? 'Me' : creator}</Text> */}
                         </View>
                     </View>
                 </View>
@@ -472,7 +480,18 @@ const Event = ({ props }) => {
                                     <TouchableOpacity className={`${tailwind.buttonWhite} ${Platform.OS === 'android' ? 'rounded-none' : null}`}
                                         onPress={() => {
                                             hanldeCreateEvent(selectedLocation, title, sickEmps, leaveEmps, firebase.auth().currentUser?.email, props.ipAddress, timerSelected); getCurrentEvent(); setTimer(timerSelected)
-                                        }}>
+                                        }}
+                                        style={{
+                                            shadowColor: '#000',
+                                            shadowOffset: {
+                                                width: 0,
+                                                height: 1,
+                                            },
+                                            shadowOpacity: 0.25,
+                                            shadowRadius: 4,
+                                            elevation: 5,
+                                        }}
+                                    >
                                         <Text className={`${tailwind.buttonBlueText}`}>Create Event</Text>
                                     </TouchableOpacity>
                                 </View>

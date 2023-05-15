@@ -318,13 +318,6 @@ const getAllAbsents = async (eventId) => {
 
             });
         })
-        .then(() => {
-            Alert.alert('Event has finish', 'See the report in the Report screen',
-                [
-                    { text: 'Ok' },
-                ]
-            );
-        })
 }
 
 const getAttendance = (eventId, empId) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import MenuDrawerNavigator from "./MenuDrawerNavigator";
-import { Welcome, SignIn, SignUp, EnterOTP, Checkin, Forgotpassword, ResetPassword, Profile } from "../screens";
+import { Welcome, SignIn, SignUp, EnterOTP, Forgotpassword, ResetPassword, Profile } from "../screens";
 import { ROUTES, COLORS } from "..";
 
 const Stack = createStackNavigator();
@@ -27,7 +27,6 @@ const WelcomeStackNavigator = () => {
             <Stack.Screen name='Sign In' component={SignIn} options={optionsHeaderWithHeight} />
             <Stack.Screen name='Sign Up' component={SignUp} options={optionsHeader} />
             <Stack.Screen name='Forgotpassword' component={Forgotpassword} options={optionsHeader} />
-            <Stack.Screen name='Checkin' component={Checkin} options={optionsHeaderWithHeight} />
             <Stack.Screen name='EnterOTP' component={EnterOTP} options={optionsHeader} />
             <Stack.Screen name='ResetPassword' component={ResetPassword} options={optionsHeader} />
             {/* HOME STACK */}

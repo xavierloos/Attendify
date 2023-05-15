@@ -451,7 +451,18 @@ const Employee = ({ navigation, route }) => {
                     {permission == 'Admin' || permission == 'Super Admin' ? null : (
                         <>
                             <View className={`${tailwind.viewWrapper} px-4`}>
-                                <TouchableOpacity className={`${tailwind.buttonBlue} bg-black mb-4`} onPress={() => Linking.openURL(`http://seevee.uksouth.cloudapp.azure.com`)}>
+                                <TouchableOpacity className={`${tailwind.buttonBlue} bg-black mb-4`} onPress={() => Linking.openURL(`http://seevee.uksouth.cloudapp.azure.com`)}
+                                    style={{
+                                        shadowColor: '#000',
+                                        shadowOffset: {
+                                            width: 0,
+                                            height: 1,
+                                        },
+                                        shadowOpacity: 0.25,
+                                        shadowRadius: 4,
+                                        elevation: 5,
+                                    }}
+                                >
                                     <Text className={`${tailwind.buttonWhiteText}`}>SeeVee</Text>
                                 </TouchableOpacity>
                             </View>

@@ -538,10 +538,31 @@ const Profile = ({ navigation }) => {
                         </View>
                     </Modal>
                     <View className={`${tailwind.viewWrapper} px-4`}>
-                        {permission == 'Admin' || permission == 'Super Admin' ? null : (<TouchableOpacity className={`${tailwind.buttonBlue} bg-black mb-2`} onPress={() => Linking.openURL(`http://seevee.uksouth.cloudapp.azure.com`)}>
+                        {permission == 'Admin' || permission == 'Super Admin' ? null : (<TouchableOpacity className={`${tailwind.buttonBlue} bg-black mb-2`} onPress={() => Linking.openURL(`http://seevee.uksouth.cloudapp.azure.com`)}
+                            style={{
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 1,
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 4,
+                                elevation: 5,
+                            }}
+                        >
                             <Text className={`${tailwind.buttonWhiteText}`}>SeeVee</Text>
                         </TouchableOpacity>)}
-                        <TouchableOpacity className={`${tailwind.buttonBlue}`} onPress={() => { handleSignOut() }}>
+                        <TouchableOpacity className={`${tailwind.buttonBlue}`} onPress={() => { handleSignOut() }}
+                            style={{
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 1,
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 4,
+                                elevation: 5,
+                            }}>
                             <Text className={`${tailwind.buttonWhiteText}`}>Sign Out</Text>
                         </TouchableOpacity>
                     </View>

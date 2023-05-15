@@ -61,8 +61,18 @@ const SignIn = ({ navigation }) => {
                             className={`${tailwind.buttonBlue}`}
                             // onPress={() => { signInUser('test@test.com', '123456') }}
                             onPress={() => { signInUser('superadmin@test.com', 'superadmin') }}
-                        // onPress={() => { signInUser(email, password) }}
-                        // disabled={(!email.trim() || !password.trim())}
+                            // onPress={() => { signInUser(email, password) }}
+                            // disabled={(!email.trim() || !password.trim())}
+                            style={{
+                                shadowColor: '#000',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 1,
+                                },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 4,
+                                elevation: 5,
+                            }}
                         >
                             <Text className={`${tailwind.buttonWhiteText}`}>Sign In</Text>
                         </TouchableOpacity>

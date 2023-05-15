@@ -5,7 +5,6 @@ export default {
     FORGOT_PASS: 'Forgotpassword',
     RESET_PASS: 'ResetPassword',
     ENTER_OTP: 'EnterOTP',
-    CHECKIN: 'Checkin',
 
     HOME: 'Home',
     HOME_TAB: 'Home Tab',
