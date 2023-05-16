@@ -13,10 +13,12 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import { getStorage, getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
 //import { Appearance, useColorScheme } from 'react-native-appearance';
 //import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 
-const Profile = ({ navigation }) => {
+const Profile = () => {
+    const navigation = useNavigation();
     const [status, setStatus] = useState('');
     const [empId, setEmpId] = useState('');
     const [name, setName] = useState('');
@@ -66,7 +68,7 @@ const Profile = ({ navigation }) => {
         firebase.auth()
             .signOut()
             .then(() => {
-                navigation.replace(ROUTES.WELCOME)
+                navigation.navigate(ROUTES.WELCOME)
             })
             .catch(error => console.log(error.message))
     }

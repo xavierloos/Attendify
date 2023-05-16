@@ -23,12 +23,11 @@ const WelcomeStackNavigator = () => {
     }
     return (
         <Stack.Navigator initialRouteName="Welcome">
-            <Stack.Screen name='Welcome' component={Welcome} options={optionsHeaderWithHeight} />
-            <Stack.Screen name='Sign In' component={SignIn} options={optionsHeaderWithHeight} />
-            <Stack.Screen name='Sign Up' component={SignUp} options={optionsHeader} />
-            <Stack.Screen name='Forgotpassword' component={Forgotpassword} options={optionsHeader} />
-            <Stack.Screen name='EnterOTP' component={EnterOTP} options={optionsHeader} />
-            <Stack.Screen name='ResetPassword' component={ResetPassword} options={optionsHeader} />
+            <Stack.Screen name={ROUTES.WELCOME} component={Welcome} options={optionsHeaderWithHeight} />
+            <Stack.Screen name={ROUTES.SIGNIN} component={SignIn} options={optionsHeaderWithHeight} />
+            <Stack.Screen name={ROUTES.SIGNUP} component={SignUp} options={optionsHeader} />
+            <Stack.Screen name={ROUTES.FORGOT_PASS} component={Forgotpassword} options={optionsHeader} />
+            <Stack.Screen name={ROUTES.RESET_PASS} component={ResetPassword} options={optionsHeader} />
             {/* HOME STACK */}
             {/* <Stack.Screen name={ROUTES.HOME} component={MenuDrawerNavigator} options={{ headerShown: false }} /> */}
         </Stack.Navigator>
