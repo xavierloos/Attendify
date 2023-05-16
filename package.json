@@ -30,6 +30,7 @@
     "buffer": "^6.0.3",
     "date-fns": "^2.29.3",
     "detective": "^5.2.1",
+    "eas-cli": "^3.12.1",
     "expo": "^48.0.9",
     "expo-constants": "^14.2.1",
     "expo-file-system": "^15.2.2",

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Attendify",
     "slug": "attendify",
-    "description":"Application to check attendances on live events",
+    "description": "Application to check attendances on live events",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/attendify-icon.png",
@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xavierloos.attendify"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +26,8 @@
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.xavierloos.attendify"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -40,9 +42,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "a4c15d67-2421-44d0-aa01-ff9f46824e67"
+        "projectId": "5caca15a-2644-4d47-a01a-1a3cf420147f"
       }
     },
-    "owner": "xavierloos"
+    "owner": "attendify_infosys"
   }
 }

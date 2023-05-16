@@ -15,12 +15,12 @@ const Welcome = ({ navigation }) => {
                     <Image source={require('../../assets/attendify-icon.png')} className="w-24 h-24" />
                 </View>
                 <View className={`justify-center items-center`}>
-                    <Text className={`text-center font-bold mb-10 text-6xl`}>
-                        Attendify
-                    </Text>
                     <View className={`${tailwind.viewWrapper} w-11/12 `}>
+                        <Text className={`text-center font-bold my-5 text-5xl`}>
+                            Attendify
+                        </Text>
                         <TouchableOpacity
-                            className={`${tailwind.buttonBlue}`}
+                            className={`${tailwind.buttonBlue} mb-5`}
                             onPress={() => { navigation.navigate(ROUTES.SIGNIN) }}
                             style={{
                                 shadowColor: '#000',
@@ -35,8 +35,6 @@ const Welcome = ({ navigation }) => {
                         >
                             <Text className={`${tailwind.buttonWhiteText}`}>Sign In</Text>
                         </TouchableOpacity>
-                    </View>
-                    <View className={`${tailwind.viewWrapper} w-11/12 mb-7`}>
                         <TouchableOpacity
                             className={`${tailwind.buttonWhite}`}
                             onPress={() => { navigation.navigate(ROUTES.SIGNUP) }}
