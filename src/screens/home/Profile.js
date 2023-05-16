@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity, Alert, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView, Image } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { View, Text, TouchableOpacity, Alert, TextInput, Modal, KeyboardAvoidingView, Linking, ScrollView, Image, ImageBackground, Dimensions } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
 import { firebase, storage } from '../../../config'
 import { checkIpAddress, fetchUnit, getStatusIcon } from '../../../functions'
 import tailwind from '../../constants/tailwind'
@@ -11,13 +11,13 @@ import { constants } from 'buffer'
 import * as ImagePicker from 'expo-image-picker'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { getStorage, getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
-//import { Appearance, useColorScheme } from 'react-native-appearance';
-//import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 
 
 const Profile = () => {
+    const refRBSheet = useRef();
     const navigation = useNavigation();
     const [status, setStatus] = useState('');
     const [empId, setEmpId] = useState('');
@@ -34,6 +34,7 @@ const Profile = () => {
     const [isModalPasswordVisible, setIsModalPasswordVisible,] = useState(false);
     const [isModalUnitsVisible, setIsModalUnitsVisible,] = useState(false);
     const [isModalProfileVisible, setIsModalProfileVisible,] = useState(false);
+    const [isModalProfilePhotoVisible, setIsModalProfilePhotoVisible] = useState(false);
     const [subunitSelected, setSubunitSelected] = useState('');
     const [emailSent, setEmailSent] = useState(false);
     //const [theme, setTheme] = useState(lightTheme);
@@ -228,7 +229,7 @@ const Profile = () => {
                         alignItems: 'center'
                     }}
                 >
-                    <TouchableOpacity onPress={() => setIsModalProfileVisible(!isModalProfileVisible)}>
+                    <TouchableOpacity onPress={() => refRBSheet.current.open()} >
                         <Image source={{ uri: avatar }}
                             style={{
                                 height: 130,
@@ -245,10 +246,12 @@ const Profile = () => {
                                 elevation: 5,
                                 zIndex: 3,
                             }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setIsModalProfileVisible(!isModalProfileVisible)}>
                         <View style={{
                             position: 'absolute',
-                            top: 90,
-                            left: 90,
+                            top: -35,
+                            left: 20,
                             backgroundColor: COLORS.primary,
                             color: COLORS.white,
                             borderRadius: 100,
@@ -539,6 +542,31 @@ const Profile = () => {
                             </View>
                         </View>
                     </Modal>
+                    {/* MODAL PROFILE Image */}
+                    <RBSheet
+                        ref={refRBSheet}
+                        height={Dimensions.get('window').height / 1.2}
+                        closeOnDragDown={true}
+                        closeOnPressMask={true}
+                        animationType={'slide'}
+                        customStyles={{
+                            wrapper: {
+                                // backgroundColor: "#00000033"
+                            },
+                            container: {
+                                borderTopLeftRadius: 25,
+                                borderTopRightRadius: 25,
+                                paddingHorizontal: 10
+                            },
+                            draggableIcon: {
+                                backgroundColor: COLORS.primary
+                            }
+                        }}
+                    >
+                        <ImageBackground
+                            source={{ uri: avatar }}
+                            style={{ height: Dimensions.get('window').height / 2, width: '100%' }} />
+                    </RBSheet>
                     <View className={`${tailwind.viewWrapper} px-4`}>
                         {permission == 'Admin' || permission == 'Super Admin' ? null : (<TouchableOpacity className={`${tailwind.buttonBlue} bg-black mb-2`} onPress={() => Linking.openURL(`http://seevee.uksouth.cloudapp.azure.com`)}
                             style={{

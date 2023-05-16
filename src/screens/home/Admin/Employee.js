@@ -1,14 +1,15 @@
 import { ListItem, Avatar } from '@rneui/base'
-import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Image, Modal, Linking } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, Image, Modal, Linking, ImageBackground, Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { COLORS } from '../../..'
 import { firebase } from '../../../../config'
 import tailwind from '../../../constants/tailwind'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { getStatusIcon, getStatusName, getAllStatus, updateStatus, getPermission, fetchUnit } from '../../../../functions'
-
+import RBSheet from "react-native-raw-bottom-sheet";
 const Employee = ({ navigation, route }) => {
+    const refRBSheet = useRef();
     const [permission, setPermission] = useState(route.params['permission'])
     const [currentUserPermission, setCurrentUserPermission] = useState()
     const [unit, setUnit] = useState('')
@@ -127,13 +128,13 @@ const Employee = ({ navigation, route }) => {
                             elevation: 5,
                             zIndex: 3,
                         }}>
-                        <Image className="h-32 w-32 rounded-full mx-auto drop-shadow-md"
-
-                            source={{
-                                uri: `${route.params['avatar']}`,
-                            }}
-
-                        />
+                        <TouchableOpacity onPress={() => refRBSheet.current.open()} >
+                            <Image className="h-32 w-32 rounded-full mx-auto drop-shadow-md"
+                                source={{
+                                    uri: `${route.params['avatar']}`,
+                                }}
+                            />
+                        </TouchableOpacity>
                     </View>
 
                 </View>
@@ -473,6 +474,30 @@ const Employee = ({ navigation, route }) => {
                         </>
                     )}
                 </View>
+                <RBSheet
+                    ref={refRBSheet}
+                    height={Dimensions.get('window').height / 1.2}
+                    closeOnDragDown={true}
+                    closeOnPressMask={true}
+                    animationType={'slide'}
+                    customStyles={{
+                        wrapper: {
+                            // backgroundColor: "#00000033"
+                        },
+                        container: {
+                            borderTopLeftRadius: 25,
+                            borderTopRightRadius: 25,
+                            paddingHorizontal: 10
+                        },
+                        draggableIcon: {
+                            backgroundColor: COLORS.primary
+                        }
+                    }}
+                >
+                    <ImageBackground
+                        source={{ uri: route.params['avatar'] }}
+                        style={{ height: Dimensions.get('window').height / 2, width: '100%' }} />
+                </RBSheet>
             </KeyboardAvoidingView>
             {/* </ScrollView> */}
         </>
