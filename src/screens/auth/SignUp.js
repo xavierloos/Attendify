@@ -30,11 +30,8 @@ const SignUp = ({ navigation }) => {
 
     useEffect(() => {
         if (units.length <= 0) getAllUnits().then(res => setUnits(res))
-    }, [units])
-
-    useEffect(() => {
         password === confirmPassword ? setValidConfirmPassword(true) : setValidConfirmPassword(false);
-    }, [, confirmPassword]);
+    }, [units, confirmPassword])
 
     const handleCheckEmail = (text) => {
         let regex = /^[a-z]+\.[a-z]+(@infosys.com)$/;
@@ -59,7 +56,6 @@ const SignUp = ({ navigation }) => {
     };
 
     return (
-
         <KeyboardAvoidingView>
             <ScrollView>
                 <View className={`bg-[${COLORS.brightGrey}] items-center p-5 w-full min-h-screen`}>
@@ -76,10 +72,7 @@ const SignUp = ({ navigation }) => {
                             autoCorrect={false}
                         />
                     </View>
-
-                    {validempId ? <Text className={`${tailwind.validate}`}>Employee Id must be 7 digits </Text>
-                        : null}
-
+                    {validempId ? <Text className={`${tailwind.validate}`}>Employee Id must be 7 digits </Text> : null}
                     <View className={`${tailwind.viewWrapper}`}>
                         <TextInput
                             //keyboardType='name-phone-pad'
@@ -94,7 +87,6 @@ const SignUp = ({ navigation }) => {
                     </View>
                     {/*    {validEmpName && <Text className="font-medium tracking-wide text-red-500 text-xs mb-2 mt-[-7]">
                 Employee Name should be in alphabets </Text>} */}
-
                     <View className={`${tailwind.viewWrapper}`}>
                         <RNPickerSelect
                             onValueChange={(value) => { getAllSubunitsByUnitId(value).then(res => setSubunits(res)) }}
@@ -163,11 +155,8 @@ const SignUp = ({ navigation }) => {
                             autoCapitalize='none'
                             autoCorrect={false}
                         />
-
                     </View>
-
                     {checkValidEmail && (<Text className={`${tailwind.validate}`}>please use the email associated with @infosys.com</Text>)}
-
                     <View className={`${tailwind.viewWrapper}`}>
                         <TextInput
                             className={`${tailwind.inputs} ${Platform.OS === 'android' ? 'rounded-none' : null}`}
@@ -179,13 +168,11 @@ const SignUp = ({ navigation }) => {
                             autoCorrect={false}
                         />
                     </View>
-
                     {validpasswordSpace && <Text className={`${tailwind.validate}`}>Password shouldn`t contain space</Text>}
                     {validpassword && <Text className={`${tailwind.validate}`}>Password must be 8-16 characters long</Text>}
                     {validpasswordChar && <Text className={`${tailwind.validate}`}>Password should contain atleast an uppercase </Text>}
                     {validpasswordChar && <Text className={`${tailwind.validate}`}>Password should contain atleast a lowercase</Text>}
                     {validpasswordChar && <Text className={`${tailwind.validate}`}>Password should contain atleast a number</Text>}
-
                     <View className={`${tailwind.viewWrapper}`}>
                         <TextInput
                             className={`${tailwind.inputs} ${Platform.OS === 'android' ? 'rounded-none' : null}`}
@@ -227,7 +214,6 @@ const SignUp = ({ navigation }) => {
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
-
     );
 };
 export default SignUp;

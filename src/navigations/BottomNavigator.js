@@ -1,11 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS, ROUTES } from "..";
 import EmployeesNavigator from "./EmployeesNavigator";
-import { useNavigation } from "@react-navigation/native";
 import { getPermission } from "../../functions";
 import { firebase } from '../../config'
 import ProfileHeader from "./headers/ProfileHeader";
@@ -81,11 +79,9 @@ const BottomTabNavigator = () => {
         }
     }
 
-
     return (
         <Tab.Navigator screenOptions={({ route }) => (screenOptions(route))} >
             <Tab.Screen name={ROUTES.HOME_TAB} component={DashboardHeader} options={{ title: 'Dashboard' }} />
-
             <Tab.Screen name={ROUTES.CHART} component={ReportHeader} options={{ title: 'Report' }} />
             <Tab.Screen name={ROUTES.PROFILE} component={ProfileHeader} options={{ title: `Profile` }} />
             <Tab.Screen name={ROUTES.EMPLOYEES_NAVIGATOR} component={EmployeesNavigator} options={{ title: 'Employees' }} />
