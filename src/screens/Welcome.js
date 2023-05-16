@@ -7,13 +7,9 @@ import { ROUTES, COLORS } from '..'
 const Welcome = ({ navigation }) => {
     return (
         <>
-            <ImageBackground source={require("../../assets/wave.png")} style={{ height: Dimensions.get('window').height / 2, width: '100%' }}>
-            </ImageBackground>
-
-            <View className={`${tailwind.containerWrapper} bg-[${COLORS.brightGrey}] pt-0`}>
-                <View className="justfy-center items-center" >
-                    <Image source={require('../../assets/attendify-icon.png')} className="w-24 h-24" />
-                </View>
+            <ImageBackground source={require("../../assets/wave.png")} style={{ height: Dimensions.get('window').height / 1.9, width: '100%' }} />
+            <View className={`${tailwind.containerWrapper} bg-[${COLORS.brightGrey}] pt-0`} style={{ height: Dimensions.get('window').height / 2, width: '100%' }} >
+                <Image source={require('../../assets/attendify-icon.png')} className="w-24 h-24 d-flex mx-auto justfy-center items-center" />
                 <View className={`justify-center items-center`}>
                     <View className={`${tailwind.viewWrapper} w-11/12 `}>
                         <Text className={`text-center font-bold my-5 text-5xl`}>
