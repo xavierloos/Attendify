@@ -10,13 +10,13 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDIhRlnq04Z60UgF6b4_fxM1q_PQD0UDAM",
-    authDomain: "attend-3096f.firebaseapp.com",
-    projectId: "attend-3096f",
-    storageBucket: "attend-3096f.appspot.com",
-    messagingSenderId: "1062696918069",
-    appId: "1:1062696918069:web:6cf11616b8c9973fbce57c",
-    measurementId: "G-GY6Q8KQS3K"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
 };
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
